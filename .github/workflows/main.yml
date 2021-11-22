@@ -16,9 +16,17 @@ jobs:
         with:
           issue-number: ${{github.event.pull_request.number}}
           body-includes: 'This commit contains database migrations!'
+      - name: Find a comment using a search term.
+        uses: sandeshjangam/comment-actions@v1
+        id: find_comment
+        with:
+          type: "find"
+          search_term: "This commit contains database migrations!"
+          number: ${{ github.event.pull_request.number }}
       - run: |
           echo ${{ steps.find-last-comment.outputs.comment-id }}
           echo ${{ steps.find-last-comment.outputs.comment-body }}
           echo ${{ steps.find-last-comment.outputs.comment-author }}
           echo test
-          echo ${{ steps.changed-files-specific.outputs.any_changed }}
+          echo ${{ steps.find_comment.outputs.comment_id }}
+
