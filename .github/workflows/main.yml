@@ -6,12 +6,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Post comment
-        uses: peter-evans/commit-comment@v1
+      - name: Create a comment
+        uses: sandeshjangam/comment-actions@v1
         with:
-          sha: ${{ github.event.pull_request.head.sha }}
+          type: "create"
           body: |
-            This commit contains database migrations
+           ## This commit contains database migrations!
+          number: ${{ github.event.pull_request.number }}
       - name: Find last comment
         id: find-last-comment
         uses: peter-evans/find-comment@v1
