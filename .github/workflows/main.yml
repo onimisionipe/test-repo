@@ -1,0 +1,20 @@
+name: Calling reusable workflow
+
+on: [pull_request]
+jobs:
+  second-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find last comment
+        id: find-last-comment
+        uses: peter-evans/find-comment@v1
+        with:
+          issue-number: ${{github.event.pull_request.number}}
+          comment-author: github-actions[bot]
+          body-includes: 'This commit contains database migrations!'
+      - run: |
+          echo ${{ steps.find-last-comment.outputs.comment-id }}
+          echo ${{ steps.find-last-comment.outputs.comment-body }}
+          echo ${{ steps.find-last-comment.outputs.comment-author }}
+          echo test
+          echo ${{ steps.changed-files-specific.outputs.any_changed }}
