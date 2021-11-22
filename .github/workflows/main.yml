@@ -9,6 +9,7 @@ jobs:
       - name: Post comment
         uses: peter-evans/commit-comment@v1
         with:
+          sha: ${{ github.event.pull_request.head.sha }}
           body: |
             This commit contains database migrations
       - name: Find last comment
