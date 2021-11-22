@@ -10,7 +10,7 @@ jobs:
         uses: peter-evans/commit-comment@v1
         with:
           body: |
-            This commit contains database migrations!
+            This commit contains database migrations
       - name: Find last comment
         id: find-last-comment
         uses: peter-evans/find-comment@v1
@@ -22,7 +22,7 @@ jobs:
         id: find_comment
         with:
           type: "find"
-          search_term: "This commit contains database migrations!"
+          search_term: "database migrations"
           number: ${{ github.event.pull_request.number }}
       - run: |
           echo ${{ steps.find-last-comment.outputs.comment-id }}
