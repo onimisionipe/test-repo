@@ -5,6 +5,7 @@ jobs:
   second-job:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Post comment
         uses: peter-evans/commit-comment@v1
         with:
