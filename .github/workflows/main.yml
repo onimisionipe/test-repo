@@ -5,6 +5,11 @@ jobs:
   second-job:
     runs-on: ubuntu-latest
     steps:
+      - name: Post comment
+        uses: peter-evans/commit-comment@v1
+        with:
+          body: |
+            ## This commit contains database migrations!
       - name: Find last comment
         id: find-last-comment
         uses: peter-evans/find-comment@v1
